@@ -52,7 +52,6 @@ void setup() {
   Serial.println("Starting server...");
   dashboard = new Dashboard(&server);
 
-  // Note: explicit type is only needed on ESP8266
   dashboard->Add<uint32_t>("Uptime", millis, 5000);
   dashboard->Add("Bool", test, 2000);
   dashboard->Add<float>(
