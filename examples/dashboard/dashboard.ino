@@ -2,18 +2,18 @@
 #include <ESPmDNS.h>
 #include <WiFi.h>
 
-#else // ESP32
-#include <ESP8266mDNS.h>
+#else  // ESP32
 #include <ESP8266WiFi.h>
+#include <ESP8266mDNS.h>
 
-#endif // ESP32
+#endif  // ESP32
 
 #include "dashboard.h"
 
 static const char* ssid = ".";
 static const char* password = ".";
 
-Dashboard *dashboard;
+Dashboard* dashboard;
 AsyncWebServer server(80);
 
 bool test = false;
@@ -55,7 +55,8 @@ void setup() {
   // Note: explicit type is only needed on ESP8266
   dashboard->Add<uint32_t>("Uptime", millis, 5000);
   dashboard->Add("Bool", test, 2000);
-  dashboard->Add<float>("Float", []() { return millis() * 1.1; }, 2000);
+  dashboard->Add<float>(
+      "Float", []() { return millis() * 1.1; }, 2000);
   server.begin();
   Serial.println("Started server.");
 }
@@ -64,7 +65,8 @@ void loop() {
   delay(10 * 1000);
 
 #ifdef ESP32
-  // Note: this works around https://github.com/espressif/arduino-esp32/issues/3886
+  // Note: this works around
+  // https://github.com/espressif/arduino-esp32/issues/3886
   if (!MDNS.begin("dashboard")) {
     Serial.println("Error refreshing MDNS responder!");
   }
