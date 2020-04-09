@@ -2,6 +2,7 @@
 #define DASHBOARD
 
 #include <functional>
+#include <sstream>
 #include <ESPAsyncWebServer.h>
 
 class Dashboard {
